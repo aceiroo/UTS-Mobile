@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button, TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, StyleSheet, Button, TouchableOpacity, TextInput, Image } from 'react-native';
  
 const styles = StyleSheet.create({
   container: {
@@ -39,6 +39,9 @@ const styles = StyleSheet.create({
     padding: 8
   },forgot: {
     flexDirection: "row",
+  },imageHeart:{
+      width:100,
+      height:100,
   }
 });
  
@@ -46,7 +49,12 @@ const styles = StyleSheet.create({
 const SignInScreen = ({onSignIn, navigation}) => {
   return (
     <View style={styles.container}>
-        <Text style={{fontWeight: "bold", fontSize: 30, paddingBottom: 20}}>Sign in</Text>
+
+        <View>
+          <Image style={styles.imageHeart} source={require('./heart.png')} />
+        </View>
+
+        <Text style={{fontWeight: "bold", fontSize: 30, paddingBottom: 20}}>Cold Heart</Text>
 
         <TextInput style={styles.textUser} placeholder="Username/Email"/>
         <TextInput style={styles.textPass} placeholder="Password" secureTextEntry={true}/>
