@@ -1,6 +1,7 @@
+import react from 'react';
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
- 
+import * as firebase from 'firebase';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -30,20 +31,40 @@ const styles = StyleSheet.create({
     padding: 10,
   }
 });
- 
+
 
 const SignUpScreen = ({onSignUp}) => {
+  const [email,setEmail] = react.useState('');
+  const [password,setPassword] = react.useState('');
+ 
+
+  const onSignUpPressed = () => {
+      firebase.auth().createUserWithEmailAndPassword(email,password)
+        .then(()=>{
+
+        }).catch((err) => {
+            alert(err);
+        })
+  }
+
+
   return (
     <View style={styles.container}>
       <Text style={{fontWeight: "bold", fontSize: 30, paddingBottom: 20}}>Sign Up</Text>
 
       <View>
         <Text style={{marginBottom: 5, fontWeight: "bold"}}>Enter your email</Text>
-        <TextInput style={styles.textUser} />
+        <TextInput style={styles.textUser} 
+          value={email}
+          onChangeText={(text) => setEmail(text)}
+        />
         <Text style={{marginTop: 17, fontWeight: "bold"}}>Enter your password</Text>
-        <TextInput style={styles.textPass} secureTextEntry={true}/>
+        <TextInput style={styles.textPass} secureTextEntry={true}
+         value={password}
+         onChangeText={(text) => setPassword(text)}
+        />
 
-        <TouchableOpacity style={styles.button} onPress={onSignUp}>
+        <TouchableOpacity style={styles.button} onPress={onSignUpPressed}>
           <Text style={{color: "white"}}>Confirm</Text>
         </TouchableOpacity>
       </View>

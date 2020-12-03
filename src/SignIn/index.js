@@ -1,6 +1,7 @@
+import react from 'react';
 import React from 'react';
-import { View, Text, StyleSheet, Button, TouchableOpacity, TextInput, Image } from 'react-native';
- 
+import { View, Text, StyleSheet, Button, TouchableOpacity, TextInput, Image, Alert } from 'react-native';
+import * as firebase from 'firebase';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -47,6 +48,19 @@ const styles = StyleSheet.create({
  
 
 const SignInScreen = ({onSignIn, navigation}) => {
+
+  const [email,setEmail] = react.useState('');
+  const [password,setPassword] = react.useState('');
+
+  const loginPressed = () => {
+    firebase.auth().signInWithEmailAndPassword(email,password)
+      .then(()=> {
+
+      }).catch((err) => {
+        alert(err.message);
+      })
+  }
+
   return (
     <View style={styles.container}>
 
@@ -56,11 +70,17 @@ const SignInScreen = ({onSignIn, navigation}) => {
 
         <Text style={{fontWeight: "bold", fontSize: 30, paddingBottom: 20}}>Cold Heart</Text>
 
-        <TextInput style={styles.textUser} placeholder="Username/Email"/>
-        <TextInput style={styles.textPass} placeholder="Password" secureTextEntry={true}/>
+        <TextInput style={styles.textUser} placeholder="Username/Email"
+          value={email}
+          onChangeText={(text) => {setEmail(text)}}
+        />
+        <TextInput style={styles.textPass} placeholder="Password" secureTextEntry={true}
+           value={password}
+           onChangeText={(text) => {setPassword(text)}}
+        />
 
         <View>
-          <TouchableOpacity style={styles.button} onPress={onSignIn}>
+          <TouchableOpacity style={styles.button} onPress={loginPressed}>
             <Text style={{color: "white"}}>Sign in</Text>
           </TouchableOpacity>
         </View>

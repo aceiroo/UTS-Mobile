@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
         <View style={styles.red}>
           <Text style={styles.textHeart}>Heart rate</Text>
             <View style={styles.circle}>
-              <Text style={styles.textRate}>91</Text>
+              <Text style={styles.textRate}>0</Text>
               <Text style={styles.textBpm}>bpm</Text>
             </View>
             <View style={styles.rate}>
