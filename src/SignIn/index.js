@@ -2,6 +2,7 @@ import react from 'react';
 import React from 'react';
 import { View, Text, StyleSheet, Button, TouchableOpacity, TextInput, Image, Alert } from 'react-native';
 import * as firebase from 'firebase';
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

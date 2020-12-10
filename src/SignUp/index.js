@@ -2,6 +2,7 @@ import react from 'react';
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 import * as firebase from 'firebase';
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -36,12 +37,26 @@ const styles = StyleSheet.create({
 const SignUpScreen = ({onSignUp}) => {
   const [email,setEmail] = react.useState('');
   const [password,setPassword] = react.useState('');
- 
+  const [name ,setName] = react.useState('');
+  const [age ,setAge] = react.useState('');
+  const [occupation ,setOccupation] = react.useState('');
+  const [username ,setUsername] = react.useState('');
+  const [number ,setNumber] = react.useState('');
 
   const onSignUpPressed = () => {
       firebase.auth().createUserWithEmailAndPassword(email,password)
         .then(()=>{
-
+            firebase.firestore().collection('Users').doc(firebase.auth().currentUser.uid)
+            .set({
+              name: name,
+              email: email,
+              age: age,
+              username: username,
+              occupation: occupation,
+              number: number,
+            }).catch(err => {
+              console.log(err);
+            })
         }).catch((err) => {
             alert(err);
         })
@@ -58,10 +73,41 @@ const SignUpScreen = ({onSignUp}) => {
           value={email}
           onChangeText={(text) => setEmail(text)}
         />
-        <Text style={{marginTop: 17, fontWeight: "bold"}}>Enter your password</Text>
+
+        <Text style={{marginTop: 17, marginBottom: 5 ,fontWeight: "bold"}}>Enter your password</Text>
         <TextInput style={styles.textPass} secureTextEntry={true}
          value={password}
          onChangeText={(text) => setPassword(text)}
+        />
+
+        <Text style={{marginBottom: 5, marginTop: 17, fontWeight: "bold"}}>Enter your name</Text>
+        <TextInput style={styles.textUser} 
+          value={name}
+          onChangeText={(text) => setName(text)}
+        />
+
+        <Text style={{marginBottom: 5, marginTop: 17, fontWeight: "bold"}}>Enter your username</Text>
+        <TextInput style={styles.textUser} 
+          value={username}
+          onChangeText={(text) => setUsername(text)}
+        />
+
+        <Text style={{marginBottom: 5, marginTop: 17, fontWeight: "bold"}}>Enter your phone number</Text>
+        <TextInput style={styles.textUser} 
+          value={number}
+          onChangeText={(text) => setNumber(text)}
+        />
+
+        <Text style={{marginBottom: 5, marginTop: 17, fontWeight: "bold"}}>Enter your age</Text>
+        <TextInput style={styles.textUser} 
+          value={age}
+          onChangeText={(text) => setAge(text)}
+        />  
+
+        <Text style={{marginTop: 17, marginBottom: 5, fontWeight: "bold"}}>Enter your occupation</Text>
+        <TextInput style={styles.textPass}
+         value={occupation}
+         onChangeText={(text) => setOccupation(text)}
         />
 
         <TouchableOpacity style={styles.button} onPress={onSignUpPressed}>

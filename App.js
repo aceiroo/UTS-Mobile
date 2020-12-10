@@ -15,8 +15,9 @@ import { createDrawerNavigator,DrawerContentScrollView,DrawerItemList,DrawerItem
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {MaterialCommunityIcons} from '@expo/vector-icons'
 
+
 const Drawer = createDrawerNavigator();
- 
+
 const Tab = createBottomTabNavigator();
  
 const HomeTabs = () => {
@@ -99,11 +100,11 @@ const App = () => {
     setIsAuthenticatedReady(true);
     setIsAuthenticated(!!user);
   }
+  
   if (!firebase.apps.length) {firebase.initializeApp(firebaseConfig);}
   firebase.auth().onAuthStateChanged(onAuthStateChanged);
-  //firebase.initializeApp(firebaseConfig);
-
-
+ 
+  var db = firebase.firestore();
 
   return (
     <NavigationContainer>
