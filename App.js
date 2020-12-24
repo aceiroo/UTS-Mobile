@@ -11,6 +11,7 @@ import HomeScreen from './src/Home'
 import ProfileScreen from './src/Profile';
 import AccountScreen from './src/Account';
 import * as firebase from 'firebase';
+import 'firebase/firestore';
 import { createDrawerNavigator,DrawerContentScrollView,DrawerItemList,DrawerItem, } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {MaterialCommunityIcons} from '@expo/vector-icons'
@@ -67,7 +68,6 @@ const HomeDrawer = ({onSignOut}) => {
         name="Change Password"
         component={PasswordChangeScreen}
       />
-      
       
     </Drawer.Navigator>
   );

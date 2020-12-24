@@ -16,6 +16,7 @@ UsersR.get().then((res) => {
   setEmail(res.data().email);
   setUsername(res.data().username);
   setNumber(res.data().number);
+  setImage(res.data().profileImage);
 })
 
 
