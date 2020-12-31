@@ -49,6 +49,12 @@ const handlesave = () => {
         console.log("last");
 };
 
+const deleteimage = () => {
+    db.collection('Users').doc(firebase.auth().currentUser.uid).update({
+      profileImage : firebase.firestore.FieldValue.delete()
+    });
+}
+
 handlesave();
 updateProfile();
 
@@ -64,6 +70,10 @@ updateProfile();
 
      <TouchableOpacity style={styles.button} onPress={() => { pickImage()}} >
         <Text style={{ color: "white" }}>Change photo</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.button} onPress={() => { deleteimage()}} >
+        <Text style={{ color: "white" }}>Delete</Text>
       </TouchableOpacity>
 
       <Text style={styles.textProfile}>Profile</Text>
