@@ -68,13 +68,30 @@ updateProfile();
         />
       </View>
 
-     <TouchableOpacity style={styles.button} onPress={() => { pickImage()}} >
+      <View style={{flexDirection: 'row', marginTop: 20}}>
+        <TouchableOpacity onPress={() => { pickImage()}} >
+          <Image
+              style={styles.imageEdit}
+              source={require('./edit.png')}
+          />
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => { deleteimage()}} >
+          <Image
+              style={styles.imageDelete}
+              source={require('./trash.png')}
+          />
+        </TouchableOpacity>
+      </View>
+
+
+     {/*<TouchableOpacity style={styles.button} onPress={() => { pickImage()}} >
         <Text style={{ color: "white" }}>Change photo</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.button} onPress={() => { deleteimage()}} >
         <Text style={{ color: "white" }}>Delete</Text>
-      </TouchableOpacity>
+  </TouchableOpacity>*/}
 
       <Text style={styles.textProfile}>Profile</Text>
       <Text style={styles.textName}>Name</Text>
@@ -127,6 +144,13 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },textStudent: {
     fontSize: 16,
+  },imageEdit: {
+    width: 25,
+    height: 25,
+    marginRight: 8
+  },imageDelete: {
+    width: 25,
+    height: 25
   }
 });
 
