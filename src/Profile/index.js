@@ -17,7 +17,6 @@ const [image2, setImage2] = react.useState('null');
 const db = firebase.firestore();
 const UsersR = db.collection('Users').doc(firebase.auth().currentUser.uid);
 
-
 const updateProfile = () => {
   UsersR.get().then((res) => {
     setName(res.data().name);
@@ -55,6 +54,7 @@ const deleteimage = () => {
     });
 }
 
+
 handlesave();
 updateProfile();
 
@@ -69,7 +69,7 @@ updateProfile();
       </View>
 
       <View style={{flexDirection: 'row', marginTop: 20}}>
-        <TouchableOpacity onPress={() => { pickImage()}} >
+        <TouchableOpacity onPress={() => {pickImage()}} >
           <Image
               style={styles.imageEdit}
               source={require('./edit.png')}
@@ -98,7 +98,7 @@ updateProfile();
       <Text style={styles.textName1}>{name}</Text>
       <Text style={styles.textAge}>Age</Text>
       <Text style={styles.textAge1}>{age}</Text>
-      <Text style={styles.textOccupation}>Ocupation</Text>
+      <Text style={styles.textOccupation}>Occupation</Text>
       <Text style={styles.textStudent}>{occupation}</Text>
     </View>
   );

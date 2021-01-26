@@ -37,7 +37,7 @@ const PasswordChangeScreen = ({navigation}) => {
 
       <View>
         <Text style={{marginBottom: 5, fontWeight: "bold"}}>Enter your current password</Text>
-        <TextInput style={styles.textUser} />
+        <TextInput style={styles.textUser} secureTextEntry={true}/>
         <Text style={{marginTop: 17, fontWeight: "bold"}}>Enter your new password</Text>
         <TextInput style={styles.textPass} secureTextEntry={true}/>
         <Text style={{marginTop: 17, fontWeight: "bold"}}>Confirm your password</Text>
